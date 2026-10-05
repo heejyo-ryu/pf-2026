@@ -358,6 +358,11 @@
       transition:border-color .15s, color .15s, box-shadow .15s;
     }
     .contact-row a::before{content:"✉"; color:var(--accent); font-size:13px;}
+    .contact-row a[href*="linkedin.com"]::before{
+      content:"in"; display:inline-flex; align-items:center; justify-content:center;
+      width:16px; height:16px; border-radius:3px; background:var(--accent); color:#fff;
+      font-size:10px; font-weight:700; line-height:1;
+    }
     .contact-row a:hover{border-color:var(--accent); color:var(--accent); box-shadow:0 4px 14px rgba(107,78,219,.15);}
 
     nav.toc a.active{background:var(--accent-soft); color:var(--accent); font-weight:700;}
@@ -471,6 +476,7 @@
     <h1>PM부터 CX, 담당 프로덕트부터 조직의 생산성까지 —<br>경계를 넘나들며 <span class="mark">문제를 끝까지 풀어내는</span> <span style="white-space:nowrap">PM 류희정입니다.</span></h1>
     <div class="contact-row">
       <a href="mailto:skku.rhj@gmail.com">skku.rhj@gmail.com</a>
+      <a href="https://www.linkedin.com/in/%ED%9D%AC%EC%A0%95-%EB%A5%98-b9375a280" target="_blank" rel="noopener">LinkedIn</a>
     </div>
   </div>
 </header>
@@ -757,7 +763,7 @@
 <footer>
   <div class="wrap">
     <p class="inquiry">더 자세한 내용(구체적인 지표와 협업 과정 등)은 문의해 주세요.</p>
-    <p><a href="mailto:skku.rhj@gmail.com">skku.rhj@gmail.com</a></p>
+    <p><a href="mailto:skku.rhj@gmail.com">skku.rhj@gmail.com</a> · <a href="https://www.linkedin.com/in/%ED%9D%AC%EC%A0%95-%EB%A5%98-b9375a280" target="_blank" rel="noopener">LinkedIn</a></p>
   </div>
 </footer>
 

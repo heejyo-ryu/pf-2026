@@ -344,81 +344,49 @@
   }
   .print-btn:hover{opacity:.92;}
 
-  /* ---------- screen polish (인쇄에는 적용 안 됨) ---------- */
-  @media screen{
-    header.hero{
-      background:
-        radial-gradient(circle at 88% 18%, rgba(107,78,219,.13), transparent 42%),
-        radial-gradient(circle at 4% 110%, rgba(132,125,166,.12), transparent 38%);
-    }
-    .contact-row a{
-      display:inline-flex; align-items:center; gap:7px;
-      padding:6px 14px; border:1px solid var(--line); border-radius:999px;
-      background:rgba(255,255,255,.8); color:var(--dark);
-      transition:border-color .15s, color .15s, box-shadow .15s;
-    }
-    .contact-row a::before{content:"✉"; color:var(--accent); font-size:13px;}
-    .contact-row a[href*="linkedin.com"]::before{
-      content:"in"; display:inline-flex; align-items:center; justify-content:center;
-      width:16px; height:16px; border-radius:3px; background:var(--accent); color:#fff;
-      font-size:10px; font-weight:700; line-height:1;
-    }
-    .contact-row a:hover{border-color:var(--accent); color:var(--accent); box-shadow:0 4px 14px rgba(107,78,219,.15);}
 
-    nav.toc a.active{background:var(--accent-soft); color:var(--accent); font-weight:700;}
-
-    /* 프로젝트 번호 워터마크 */
-    main{counter-reset:proj;}
-    article.project{counter-increment:proj;}
-    .proj-head{position:relative;}
-    .proj-head > *{position:relative; z-index:1;}
-    .proj-head::after{
-      content:counter(proj, decimal-leading-zero);
-      position:absolute; right:0; top:-18px; z-index:0;
-      font-size:104px; font-weight:900; line-height:1; letter-spacing:-.04em;
-      color:var(--accent); opacity:.07; pointer-events:none;
-    }
-
-    /* 문제 / 접근 / 결과 카드 */
-    .pf{position:relative; border-left-width:3px; transition:transform .2s, box-shadow .2s;}
-    .pf:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(26,26,26,.06);}
-    .pf h3{display:flex; align-items:center; gap:8px;}
-    .pf h3::before{content:""; width:7px; height:7px; border-radius:50%; background:currentColor;}
-    .pf-grid.summary .pf:nth-child(1){border-left-color:#B9B3D3;}
-    .pf-grid.summary .pf:nth-child(1) h3{color:var(--fill-context);}
-    .pf-grid.summary .pf:nth-child(2){border-left-color:#A893F0;}
-    .pf-grid.summary .pf:nth-child(3){
-      border-left-color:var(--accent);
-      background:linear-gradient(135deg, #F5F1FE 0%, #FAFAFC 70%);
-    }
-
-    .map-row:not(.map-head){transition:background .15s;}
-    .map-row:not(.map-head):hover{background:#FAFAFC;}
-    .shot img{transition:transform .25s, box-shadow .25s;}
-    .shot img:hover{transform:translateY(-3px); box-shadow:0 16px 32px rgba(26,26,26,.12);}
-
-    footer{background:linear-gradient(to bottom, #fff, var(--accent-soft));}
-
-    /* 스크롤 등장 애니메이션 (JS가 켜졌을 때만) */
-    .js-reveal .reveal{opacity:0; transform:translateY(14px); transition:opacity .5s ease, transform .5s ease;}
-    .js-reveal .reveal.is-visible{opacity:1; transform:none;}
-
-    .to-top{
-      position:fixed; right:20px; bottom:76px; width:42px; height:42px;
-      border-radius:50%; border:1px solid var(--line); background:#fff; color:var(--accent);
-      font-size:18px; cursor:pointer; box-shadow:0 6px 18px rgba(26,26,26,.08);
-      opacity:0; pointer-events:none; transform:translateY(8px);
-      transition:opacity .2s, transform .2s, border-color .15s;
-    }
-    .to-top.show{opacity:1; pointer-events:auto; transform:none;}
-    .to-top:hover{border-color:var(--accent);}
-
-    @media (max-width:560px){ .proj-head::after{font-size:64px; top:-6px;} }
-    @media (prefers-reduced-motion:reduce){
-      html{scroll-behavior:auto;}
-      .js-reveal .reveal{opacity:1; transform:none; transition:none;}
-      .pf, .shot img, .to-top{transition:none;}
-    }
+  /* ---------- design additions ---------- */
+  header.hero{
+    position:relative;
+    background:radial-gradient(760px 240px at 88% -30px, rgba(107,78,219,.12), transparent 70%);
+  }
+  header.hero::before{
+    content:""; position:absolute; left:0; right:0; top:0; height:4px;
+    background:linear-gradient(90deg,var(--accent),#A78BFA 55%,rgba(167,139,250,0));
+  }
+  header.hero .name{display:inline-flex; align-items:center; gap:8px;}
+  header.hero .name::before{content:""; width:8px; height:8px; border-radius:50%; background:var(--accent);}
+  main{counter-reset:sec;}
+  .section-label{counter-increment:sec; gap:12px;}
+  .section-label::before{
+    content:counter(sec,decimal-leading-zero);
+    width:auto; height:auto; background:var(--accent-soft); color:var(--accent);
+    font-size:12px; letter-spacing:.04em; padding:2px 9px; border-radius:999px;
+  }
+  .section-label::after{content:""; flex:1; height:1px; background:var(--line);}
+  article.project:nth-of-type(even){background:#FCFBFF;}
+  .pf-grid{counter-reset:step;}
+  .track-title{counter-reset:step;}
+  .pf{position:relative; counter-increment:step;}
+  .pf h3{display:flex; align-items:center; gap:8px;}
+  .pf h3::before{
+    content:counter(step); display:inline-flex; align-items:center; justify-content:center;
+    width:22px; height:22px; border-radius:50%; background:var(--accent); color:#fff;
+    font-size:12px; font-weight:700; letter-spacing:0; flex:none;
+  }
+  .js-reveal .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease;}
+  .js-reveal .reveal.in{opacity:1; transform:none;}
+  .js-reveal .reveal .stag{opacity:0; transform:translateY(14px); transition:opacity .55s ease calc(var(--i,0) * 110ms), transform .55s ease calc(var(--i,0) * 110ms);}
+  .js-reveal .reveal.in .stag{opacity:1; transform:none;}
+  .scroll-progress{position:fixed; left:0; top:0; height:3px; width:0; background:linear-gradient(90deg,var(--accent),#A78BFA); z-index:50; transition:width .08s linear;}
+  nav.toc a.active{background:var(--accent-soft); color:var(--accent); font-weight:700;}
+  .pf-grid.summary{display:flex; flex-direction:column; gap:12px;}
+  .pf-grid.summary .pf{display:grid; grid-template-columns:104px 1fr; column-gap:18px; align-items:start; padding:18px 24px;}
+  .pf-grid.summary .pf h3{margin:2px 0 0; font-size:14px;}
+  .pf-grid.summary .pf:last-child{background:var(--accent-soft); border-color:#DCD3F7;}
+  .pf-grid.summary .pf p{word-break:keep-all; font-size:14.5px; line-height:1.75;}
+  @media (max-width:760px){
+    .pf-grid.summary .pf{grid-template-columns:1fr; row-gap:6px; padding:14px 16px;}
   }
 
   /* ---------- print ---------- */
@@ -434,7 +402,9 @@
     .proj-head{margin-bottom:10px;}
     .proj-head h2{font-size:16px;}
     .shot-row img, .shot img{max-height:150px; width:auto;}
-    .pf-grid.summary{gap:6px;}
+    .pf-grid.summary{gap:8px;}
+    .pf-grid.summary .pf{grid-template-columns:110px 1fr; column-gap:14px;}
+    .pf h3::before{width:18px; height:18px; font-size:10px;}
     .pf{padding:8px 12px;}
     .pf p{margin:0; line-height:1.55;}
     html{zoom:.62;}
@@ -466,6 +436,11 @@
     a{color:inherit; text-decoration:none;}
   }
   footer .inquiry{font-weight:700; color:var(--dark); margin:0 0 6px;}
+  @media print{
+    .js-reveal .reveal, .js-reveal .reveal .stag{opacity:1 !important; transform:none !important; transition:none !important;}
+    article.project:nth-of-type(even){background:#fff;}
+    header.hero{background:none;}
+  }
 </style>
 </head>
 <body>
@@ -522,7 +497,7 @@
             <div class="map-proj">01 지원 전환율 개선</div>
             <div class="map-cell"><span class="dot on"></span></div>
             <div class="map-cell"><span class="dot on"></span></div>
-            <div class="map-cell"><span class="dot on"></span></div>
+            <div class="map-cell"><span class="dot off"></span></div>
             <div class="map-cell"><span class="dot off"></span></div>
           </div>
           <div class="map-row">
@@ -536,7 +511,7 @@
             <div class="map-proj">03 슈퍼파워·하찮파워</div>
             <div class="map-cell"><span class="dot on"></span></div>
             <div class="map-cell"><span class="dot on"></span></div>
-            <div class="map-cell"><span class="dot off"></span></div>
+            <div class="map-cell"><span class="dot on"></span></div>
             <div class="map-cell"><span class="dot on"></span></div>
           </div>
           <div class="map-row">
@@ -557,7 +532,7 @@
             <div class="map-proj">06 재구매 LTV 확장</div>
             <div class="map-cell"><span class="dot on"></span></div>
             <div class="map-cell"><span class="dot on"></span></div>
-            <div class="map-cell"><span class="dot off"></span></div>
+            <div class="map-cell"><span class="dot on"></span></div>
             <div class="map-cell"><span class="dot on"></span></div>
           </div>
         </div>
@@ -577,7 +552,7 @@
           <div class="role">채용 서비스(잡코리아, 알바몬) 기획 및 운영</div>
           <ul class="duties">
             <li>알바몬 구직자 지원 경험 개선</li>
-            <li>Metabase–AI 연결 환경 정책 설계 및 주도</li>
+            
           </ul>
         </li>
 
@@ -608,7 +583,7 @@
     <div class="wrap">
       <div class="proj-head">
         <span class="proj-num">PROJECT 01</span>
-        <h2>알바 구직자 지원 전환율 개선: 리뷰 커버리지 확대와 정보 위계 재설계</h2>
+        <h2>알바 구직자 지원 전환율 개선: 리뷰 커버리지 확대</h2>
         <div class="proj-meta"><img class="logo logo-w sm" src="data:image/png;base64,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" alt="웍스피어(worxphere) 로고">웍스피어 · 2026.06 ~ 운영 중</div>
       </div>
       <div class="pf-grid summary">
@@ -769,36 +744,34 @@
 
 <button class="print-btn no-print" onclick="window.print()">PDF로 저장</button>
 
-<button class="to-top no-print" aria-label="맨 위로" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<div class="scroll-progress no-print" aria-hidden="true"></div>
 <script>
-(function(){
-  if(!('IntersectionObserver' in window)) return;
-  // 스크롤 등장 애니메이션
+(function(){try{
+  /* scroll progress bar */
+  var bar=document.querySelector('.scroll-progress');
+  function upd(){var d=document.documentElement,m=d.scrollHeight-d.clientHeight;bar.style.width=(m>0?Math.min(100,d.scrollTop/m*100):0)+'%';}
+  window.addEventListener('scroll',function(){requestAnimationFrame(upd);},{passive:true});upd();
+  /* active nav item */
+  if('IntersectionObserver' in window){
+    var links={};document.querySelectorAll('nav.toc a').forEach(function(a){links[a.getAttribute('href').slice(1)]=a;});
+    var targets=Object.keys(links).map(function(id){return document.getElementById(id);}).filter(Boolean);
+    var nio=new IntersectionObserver(function(es){es.forEach(function(x){
+      if(x.isIntersecting){Object.keys(links).forEach(function(k){links[k].classList.remove('active');});links[x.target.id].classList.add('active');}
+    });},{rootMargin:'-35% 0px -60% 0px'});
+    targets.forEach(function(t){nio.observe(t);});
+  }
+  /* reveal on scroll */
+  if(!('IntersectionObserver' in window) || (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+  var els=document.querySelectorAll('section .wrap, article.project .wrap');
   document.documentElement.classList.add('js-reveal');
-  var targets = document.querySelectorAll('.section-label, .map-scroll, .t-item, .proj-head, .pf, .shot-row, .node-link, .edu-item');
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); } });
-  }, {rootMargin:'0px 0px -8% 0px'});
-  targets.forEach(function(el){ el.classList.add('reveal'); io.observe(el); });
-  window.addEventListener('beforeprint', function(){ targets.forEach(function(el){ el.classList.add('is-visible'); }); });
-
-  // 목차 현재 위치 표시
-  var links = {};
-  document.querySelectorAll('nav.toc a').forEach(function(a){ links[a.getAttribute('href').slice(1)] = a; });
-  var spy = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(!e.isIntersecting || !links[e.target.id]) return;
-      Object.keys(links).forEach(function(k){ links[k].classList.remove('active'); });
-      links[e.target.id].classList.add('active');
-    });
-  }, {rootMargin:'-45% 0px -50% 0px'});
-  Object.keys(links).forEach(function(id){ var s = document.getElementById(id); if(s) spy.observe(s); });
-
-  // 맨 위로 버튼
-  var top = document.querySelector('.to-top');
-  window.addEventListener('scroll', function(){ top.classList.toggle('show', window.scrollY > 600); }, {passive:true});
-})();
+  els.forEach(function(e){
+    e.classList.add('reveal');
+    e.querySelectorAll('.pf, .map-row, .t-item, .shot').forEach(function(c,i){c.classList.add('stag');c.style.setProperty('--i',i);});
+  });
+  var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target);}});},{threshold:.06});
+  els.forEach(function(e){io.observe(e);});
+  window.addEventListener('beforeprint',function(){els.forEach(function(e){e.classList.add('in');});});
+}catch(err){}})();
 </script>
-
 </body>
 </html>
